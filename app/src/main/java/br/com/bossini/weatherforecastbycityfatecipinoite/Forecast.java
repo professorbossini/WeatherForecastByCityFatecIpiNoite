@@ -29,4 +29,8 @@ public class Forecast {
 
     }
 
+    @Override
+    public String toString() {
+        return dayOfWeek + ", min: " + minTemp + ", max: " + maxTemp;
+    }
 }

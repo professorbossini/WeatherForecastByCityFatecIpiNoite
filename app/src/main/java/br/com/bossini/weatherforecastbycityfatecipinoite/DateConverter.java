@@ -10,7 +10,7 @@ public class DateConverter {
         Calendar agora = Calendar.getInstance();
         agora.setTimeInMillis(timeStamp * 1000);
         SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat("EEEE", Locale.getDefault());
+                new SimpleDateFormat("EEEE", new Locale("fr", "CA"));
         TimeZone tz = TimeZone.getDefault();
         agora.add(Calendar.MILLISECOND, tz.getOffset(agora.getTimeInMillis()));
         String diaDaSemana = simpleDateFormat.format(agora.getTime());
