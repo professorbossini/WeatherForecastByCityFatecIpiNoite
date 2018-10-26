@@ -22,7 +22,7 @@ public class Forecast {
         this.minTemp = numberFormat.format(minTemp);
         this.maxTemp = numberFormat.format(maxTemp);
         NumberFormat percentFormat = NumberFormat.getPercentInstance();
-        this.humidity = percentFormat.format(humidity);
+        this.humidity = percentFormat.format(humidity / 100);
         this.iconName = iconName;
         this.description = description;
 

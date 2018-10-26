@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText locationEditText;
     private List <Forecast> previsoes;
+    private ForecastAdapter adapter;
+    private ListView weatherListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         previsoes = new ArrayList<>();
+        adapter = new ForecastAdapter(this, previsoes);
+        weatherListView = findViewById(R.id.weatherListView);
+        weatherListView.setAdapter(adapter);
         locationEditText =
                 findViewById(R.id.locationEditText);
         FloatingActionButton fab =
@@ -50,13 +56,10 @@ public class MainActivity extends AppCompatActivity {
                                 getEditableText().
                                 toString();
                 String end =
-                        getString(R.string.web_service_url);
-                end += cidade;
-                String chave =
-                        getString(R.string.api_key);
-                end += "&APPID=";
-                end += chave;
-                end += "&units=metric&lang=pt";
+                        getString(R.string.web_service_url,
+                                cidade, getString(R.string.api_key),
+                                getString(R.string.units),
+                                getString(R.string.lang));
                 new ObtemTemperaturas().execute(end);
             }
         });
